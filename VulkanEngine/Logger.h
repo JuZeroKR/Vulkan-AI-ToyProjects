@@ -7,6 +7,9 @@
 #include <cassert>
 #include <string>
 #include <format>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 namespace caaVk {
 
@@ -26,7 +29,7 @@ namespace caaVk {
             logFile.open("log.txt", ios::out | ios::trunc);
 
             if (!logFile.is_open()) {
-                cerr << "ERROR: Could not open log.txt for writing!" << endl;
+                cerr << "ERROR: Could not open log.txt for writing!" << std::endl;
             }
         }
 
@@ -71,16 +74,19 @@ namespace caaVk {
         {
             auto& logger = getInstance();
 
-            cout << message << endl;
+            std::cout << message << std::endl;
 
             if (logger.logFile.is_open()) {
-                logger.logFile << message << endl;
+                logger.logFile << message << std::endl;
                 logger.logFile.flush(); // Ensure immediate write
                 logger.messagesProcessed++;
             }
             else {
-                cerr << "WARNING: Log file is not open, message lost: " << message << endl;
+                cerr << "WARNING: Log file is not open, message lost: " << message << std::endl;
             }
+#ifdef _WIN32
+            OutputDebugStringA((message + "\n").c_str());
+#endif
         }
     };
 

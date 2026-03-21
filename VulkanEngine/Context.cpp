@@ -44,19 +44,16 @@ namespace caaVk {
 	}
 
 	caaVk::Context::Context(const vector<const char*>& requiredInstanceExtensions, bool useSwapchain)
+		: descriptorPool_(_device)
 	{
 	
-
-		// Swapchain use
-		if (useSwapchain)
-		{
-			createInstance(requiredInstanceExtensions);
-			selectPhysicalDevice();
-			createLogicalDevice(useSwapchain);
-			createQueues();
-			createPipelineCache();
-		}
-
+		createInstance(requiredInstanceExtensions);
+		selectPhysicalDevice();
+		createLogicalDevice(useSwapchain);
+		createQueues();
+		createPipelineCache();
+		determineDepthStencilFormat();
+		descriptorPool_.createFromScript();
 	}
 
 	caaVk::Context::~Context()
@@ -466,8 +463,35 @@ namespace caaVk {
 		check(vkCreatePipelineCache(_device, &pipelineCacheCreateInfo, nullptr, &pipelineCache_));
 	}
 
+	/*
+	The support of a format depends on the tiling mode and usage, so we must also include these as parameters.
+	*/
 	void caaVk::Context::determineDepthStencilFormat()
 	{
+
+		/*
+		• VK_FORMAT_D32_SFLOAT: 32-bit float for depth
+		• VK_FORMAT_D32_SFLOAT_S8_UINT: 32-bit signed float for depth and 8 bit
+		stencil component
+		• VK_FORMAT_D24_UNORM_S8_UINT: 24-bit float for depth and 8 bit stencil
+		component
+		*/
+		std::vector<VkFormat> formatList = {
+		VK_FORMAT_D32_SFLOAT_S8_UINT,
+		VK_FORMAT_D24_UNORM_S8_UINT,
+		VK_FORMAT_D16_UNORM_S8_UINT
+		};
+
+		for (auto& format : formatList) {
+			VkFormatProperties formatProps;
+			vkGetPhysicalDeviceFormatProperties(_physicalDevice, format, &formatProps);
+			if (formatProps.optimalTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT) {
+				depthFormat_ = format;
+				break;
+			}
+		}
+
+		assert(depthFormat_ != VK_FORMAT_UNDEFINED);
 	}
 
 	/*
@@ -607,6 +631,36 @@ namespace caaVk {
 			}
 		}
 
+	}
+
+	auto Context::device() -> VkDevice
+	{
+		return _device;
+	}
+
+	auto Context::instance() -> VkInstance
+	{
+		return _vkInstance;
+	}
+
+	auto Context::physicalDevice() -> VkPhysicalDevice
+	{
+		return _physicalDevice;
+	}
+
+	auto Context::graphicsCommandPool() const -> VkCommandPool
+	{
+		return graphicsCommandPool_;
+	}
+
+	auto Context::computeCommandPool() const -> VkCommandPool
+	{
+		return computeCommandPool_;
+	}
+
+	auto Context::transferCommandPool() const -> VkCommandPool
+	{
+		return transferCommandPool_;
 	}
 
 	auto Context::getQueueFamilyIndex(VkQueueFlags queueFlags) const -> uint32_t

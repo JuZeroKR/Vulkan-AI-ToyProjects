@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "ImageRestoration.h"
+
+#include "spirv_reflect.h"
+
 #include <vulkan/vulkan.h>
 #include <iostream>
 #include <stdexcept>
@@ -7,6 +10,8 @@
 #include <cstdio>
 #include "VulkanEngine.h"
 #include "VulkanEngine/Context.h"
+#include "VulkanEngine/Shader.h"
+#include <fstream>
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -65,9 +70,19 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     };
 
     std::unique_ptr<caaVk::Context> context;
+	std::unique_ptr<caaVk::Shader> computeShader;
     try {
         context = std::make_unique<caaVk::Context>(instanceExtensions, /*useSwapchain=*/true);
+        
         std::cout << "[ImageRestoration] Vulkan instance created successfully." << std::endl;
+        std::string assetsPath = "assets/";
+        std::string computeShaderFilename = assetsPath + "shaders/test.comp.spv";
+
+        std::cout << "Reading SPIR-V file: " << computeShaderFilename << std::endl;
+        computeShader = std::make_unique<caaVk::Shader>(*context, computeShaderFilename);
+        computeShader->printReflectionInfo();
+
+
     }
     catch (const std::exception& e) {
         std::cerr << "[ImageRestoration] Error: " << e.what() << std::endl;

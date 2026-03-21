@@ -8,7 +8,9 @@
 #include <vector>
 
 #include "VulkanTool.h"
+#include "DescriptorPool.h"
 #include "Logger.h"
+#include "Shader.h"
 
 namespace caaVk {
 	using namespace std;
@@ -43,6 +45,11 @@ namespace caaVk {
 		auto computeCommandPool() const -> VkCommandPool;
 		auto transferCommandPool() const -> VkCommandPool;
 
+		auto descriptorPool() -> DescriptorPool&
+		{
+			return descriptorPool_;
+		}
+
 
 	private:
 		VkDevice _device;
@@ -76,7 +83,7 @@ namespace caaVk {
 
 		VkFormat depthFormat_{ VK_FORMAT_UNDEFINED };
 
-		//DescriptorPool descriptorPool_;
+		DescriptorPool descriptorPool_;
 
 		bool extensionSupported(string extension);
 
