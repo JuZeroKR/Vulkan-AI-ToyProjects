@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ImageRestoration.vcxproj" Id="39c0c4f0-d445-420e-bdf6-9597fd2e69c7" />
+  <Project Path="VulkanEngine/VulkanEngine.vcxproj" Id="ca964723-8f75-4bf6-972f-8d4340e87f2e" />
+</Solution>

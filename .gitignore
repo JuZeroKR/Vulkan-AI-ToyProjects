@@ -1,0 +1,29 @@
+# Visual Studio
+.vs/
+x64/
+[Dd]ebug/
+[Rr]elease/
+*.obj
+*.pdb
+*.tlog
+*.lastbuildstate
+*.idb
+*.ilk
+*.log
+*.recipe
+*.ipch
+*.aps
+*.user
+*.suo
+*.VC.db
+*.sln.DotSettings.user
+
+# Binaries
+vulkansdk.exe
+*.exe
+*.dll
+*.lib
+
+# OS files
+Thumbs.db
+Desktop.ini

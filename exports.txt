@@ -1,0 +1,298 @@
+Microsoft (R) COFF/PE Dumper Version 14.50.35723.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file C:\Windows\System32\vulkan-1.dll
+
+File Type: DLL
+
+  Section contains the following exports for vulkan-1.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+         265 number of functions
+         265 number of names
+
+    ordinal hint RVA      name
+
+          1    0 000089C0 vkAcquireNextImage2KHR
+          2    1 00008C80 vkAcquireNextImageKHR
+          3    2 0000CAF0 vkAllocateCommandBuffers
+          4    3 00010CB0 vkAllocateDescriptorSets
+          5    4 00009900 vkAllocateMemory
+          6    5 00008980 vkBeginCommandBuffer
+          7    6 00007CE0 vkBindBufferMemory
+          8    7 00004510 vkBindBufferMemory2
+          9    8 00009B80 vkBindImageMemory
+         10    9 00007BE0 vkBindImageMemory2
+         11    A 00003AD0 vkCmdBeginQuery
+         12    B 0000E700 vkCmdBeginRenderPass
+         13    C 00002DE0 vkCmdBeginRenderPass2
+         14    D 000022D0 vkCmdBeginRendering
+         15    E 00008900 vkCmdBindDescriptorSets
+         16    F 0000FC80 vkCmdBindDescriptorSets2
+         17   10 00011250 vkCmdBindIndexBuffer
+         18   11 00003C90 vkCmdBindIndexBuffer2
+         19   12 0000D660 vkCmdBindPipeline
+         20   13 00001B40 vkCmdBindVertexBuffers
+         21   14 0000E0F0 vkCmdBindVertexBuffers2
+         22   15 0000D8B0 vkCmdBlitImage
+         23   16 00011480 vkCmdBlitImage2
+         24   17 00002BF0 vkCmdClearAttachments
+         25   18 0000A020 vkCmdClearColorImage
+         26   19 00005A50 vkCmdClearDepthStencilImage
+         27   1A 00010020 vkCmdCopyBuffer
+         28   1B 00010480 vkCmdCopyBuffer2
+         29   1C 0000D2D0 vkCmdCopyBufferToImage
+         30   1D 00003AF0 vkCmdCopyBufferToImage2
+         31   1E 00009430 vkCmdCopyImage
+         32   1F 00007F10 vkCmdCopyImage2
+         33   20 000110C0 vkCmdCopyImageToBuffer
+         34   21 0000C4E0 vkCmdCopyImageToBuffer2
+         35   22 00007690 vkCmdCopyQueryPoolResults
+         36   23 00001760 vkCmdDispatch
+         37   24 0000B790 vkCmdDispatchBase
+         38   25 00007500 vkCmdDispatchIndirect
+         39   26 00009B00 vkCmdDraw
+         40   27 0000F9D0 vkCmdDrawIndexed
+         41   28 00007380 vkCmdDrawIndexedIndirect
+         42   29 00007560 vkCmdDrawIndexedIndirectCount
+         43   2A 0000DC00 vkCmdDrawIndirect
+         44   2B 00001590 vkCmdDrawIndirectCount
+         45   2C 000103D0 vkCmdEndQuery
+         46   2D 0000DC30 vkCmdEndRenderPass
+         47   2E 00009080 vkCmdEndRenderPass2
+         48   2F 00008590 vkCmdEndRendering
+         49   30 0000B650 vkCmdExecuteCommands
+         50   31 000072E0 vkCmdFillBuffer
+         51   32 000022B0 vkCmdNextSubpass
+         52   33 0000F000 vkCmdNextSubpass2
+         53   34 00001800 vkCmdPipelineBarrier
+         54   35 0000E130 vkCmdPipelineBarrier2
+         55   36 00009860 vkCmdPushConstants
+         56   37 000098A0 vkCmdPushConstants2
+         57   38 00002920 vkCmdPushDescriptorSet
+         58   39 00005240 vkCmdPushDescriptorSet2
+         59   3A 0000F610 vkCmdPushDescriptorSetWithTemplate
+         60   3B 00008140 vkCmdPushDescriptorSetWithTemplate2
+         61   3C 00003480 vkCmdResetEvent
+         62   3D 0000F1E0 vkCmdResetEvent2
+         63   3E 000030B0 vkCmdResetQueryPool
+         64   3F 0000AF60 vkCmdResolveImage
+         65   40 0000FBC0 vkCmdResolveImage2
+         66   41 0000A7F0 vkCmdSetBlendConstants
+         67   42 00011520 vkCmdSetCullMode
+         68   43 00010630 vkCmdSetDepthBias
+         69   44 00006040 vkCmdSetDepthBiasEnable
+         70   45 0000BF60 vkCmdSetDepthBounds
+         71   46 0000A770 vkCmdSetDepthBoundsTestEnable
+         72   47 00008890 vkCmdSetDepthCompareOp
+         73   48 000113D0 vkCmdSetDepthTestEnable
+         74   49 00008730 vkCmdSetDepthWriteEnable
+         75   4A 0000CDE0 vkCmdSetDeviceMask
+         76   4B 00008EE0 vkCmdSetEvent
+         77   4C 00006050 vkCmdSetEvent2
+         78   4D 000098B0 vkCmdSetFrontFace
+         79   4E 0000E5A0 vkCmdSetLineStipple
+         80   4F 00008200 vkCmdSetLineWidth
+         81   50 0000BB40 vkCmdSetPrimitiveRestartEnable
+         82   51 0000A460 vkCmdSetPrimitiveTopology
+         83   52 0000E5D0 vkCmdSetRasterizerDiscardEnable
+         84   53 00006780 vkCmdSetRenderingAttachmentLocations
+         85   54 0000F7D0 vkCmdSetRenderingInputAttachmentIndices
+         86   55 000114C0 vkCmdSetScissor
+         87   56 000039D0 vkCmdSetScissorWithCount
+         88   57 0000D8E0 vkCmdSetStencilCompareMask
+         89   58 000102F0 vkCmdSetStencilOp
+         90   59 00005550 vkCmdSetStencilReference
+         91   5A 00009B70 vkCmdSetStencilTestEnable
+         92   5B 00008020 vkCmdSetStencilWriteMask
+         93   5C 00003B30 vkCmdSetViewport
+         94   5D 0000CE60 vkCmdSetViewportWithCount
+         95   5E 0000B740 vkCmdUpdateBuffer
+         96   5F 000066B0 vkCmdWaitEvents
+         97   60 0000F7F0 vkCmdWaitEvents2
+         98   61 00003650 vkCmdWriteTimestamp
+         99   62 0000F5E0 vkCmdWriteTimestamp2
+        100   63 0000C3E0 vkCopyImageToImage
+        101   64 00003960 vkCopyImageToMemory
+        102   65 00007FD0 vkCopyMemoryToImage
+        103   66 0000D5D0 vkCreateBuffer
+        104   67 00002CC0 vkCreateBufferView
+        105   68 0000BFE0 vkCreateCommandPool
+        106   69 000113F0 vkCreateComputePipelines
+        107   6A 0000C100 vkCreateDescriptorPool
+        108   6B 00009030 vkCreateDescriptorSetLayout
+        109   6C 00003470 vkCreateDescriptorUpdateTemplate
+        110   6D 0000F0A0 vkCreateDevice
+        111   6E 00004890 vkCreateDisplayModeKHR
+        112   6F 000059E0 vkCreateDisplayPlaneSurfaceKHR
+        113   70 00002D70 vkCreateEvent
+        114   71 0000C570 vkCreateFence
+        115   72 0000ED10 vkCreateFramebuffer
+        116   73 000050E0 vkCreateGraphicsPipelines
+        117   74 00001870 vkCreateHeadlessSurfaceEXT
+        118   75 00006480 vkCreateImage
+        119   76 0000A3C0 vkCreateImageView
+        120   77 00002930 vkCreateInstance
+        121   78 00003120 vkCreatePipelineCache
+        122   79 00004310 vkCreatePipelineLayout
+        123   7A 0000AD50 vkCreatePrivateDataSlot
+        124   7B 00007CC0 vkCreateQueryPool
+        125   7C 000048A0 vkCreateRenderPass
+        126   7D 00005BB0 vkCreateRenderPass2
+        127   7E 000025D0 vkCreateSampler
+        128   7F 0000FC30 vkCreateSamplerYcbcrConversion
+        129   80 00009B20 vkCreateSemaphore
+        130   81 000024A0 vkCreateShaderModule
+        131   82 00008EA0 vkCreateSharedSwapchainsKHR
+        132   83 00004F60 vkCreateSwapchainKHR
+        133   84 00009190 vkCreateWin32SurfaceKHR
+        134   85 00008D90 vkDestroyBuffer
+        135   86 00009460 vkDestroyBufferView
+        136   87 000100E0 vkDestroyCommandPool
+        137   88 0000CD90 vkDestroyDescriptorPool
+        138   89 00001A50 vkDestroyDescriptorSetLayout
+        139   8A 0000B600 vkDestroyDescriptorUpdateTemplate
+        140   8B 000055F0 vkDestroyDevice
+        141   8C 00005DB0 vkDestroyEvent
+        142   8D 00005020 vkDestroyFence
+        143   8E 00008940 vkDestroyFramebuffer
+        144   8F 0000B660 vkDestroyImage
+        145   90 00002DB0 vkDestroyImageView
+        146   91 00001350 vkDestroyInstance
+        147   92 000111A0 vkDestroyPipeline
+        148   93 00004870 vkDestroyPipelineCache
+        149   94 0000DA30 vkDestroyPipelineLayout
+        150   95 00002210 vkDestroyPrivateDataSlot
+        151   96 00003570 vkDestroyQueryPool
+        152   97 00004A60 vkDestroyRenderPass
+        153   98 00010280 vkDestroySampler
+        154   99 0000DFC0 vkDestroySamplerYcbcrConversion
+        155   9A 0000AEB0 vkDestroySemaphore
+        156   9B 000056C0 vkDestroyShaderModule
+        157   9C 00004AB0 vkDestroySurfaceKHR
+        158   9D 00008FC0 vkDestroySwapchainKHR
+        159   9E 00007470 vkDeviceWaitIdle
+        160   9F 0000B320 vkEndCommandBuffer
+        161   A0 0000E690 vkEnumerateDeviceExtensionProperties
+        162   A1 0000CF60 vkEnumerateDeviceLayerProperties
+        163   A2 0000DE70 vkEnumerateInstanceExtensionProperties
+        164   A3 000085B0 vkEnumerateInstanceLayerProperties
+        165   A4 0000B300 vkEnumerateInstanceVersion
+        166   A5 00006010 vkEnumeratePhysicalDeviceGroups
+        167   A6 0000CCC0 vkEnumeratePhysicalDevices
+        168   A7 00002B70 vkFlushMappedMemoryRanges
+        169   A8 00007550 vkFreeCommandBuffers
+        170   A9 0000ED90 vkFreeDescriptorSets
+        171   AA 00009050 vkFreeMemory
+        172   AB 00007F90 vkGetBufferDeviceAddress
+        173   AC 0000B030 vkGetBufferMemoryRequirements
+        174   AD 00004330 vkGetBufferMemoryRequirements2
+        175   AE 00005610 vkGetBufferOpaqueCaptureAddress
+        176   AF 0000A730 vkGetDescriptorSetLayoutSupport
+        177   B0 0000B8E0 vkGetDeviceBufferMemoryRequirements
+        178   B1 000066E0 vkGetDeviceGroupPeerMemoryFeatures
+        179   B2 0000E160 vkGetDeviceGroupPresentCapabilitiesKHR
+        180   B3 00007570 vkGetDeviceGroupSurfacePresentModesKHR
+        181   B4 0000D760 vkGetDeviceImageMemoryRequirements
+        182   B5 0000F060 vkGetDeviceImageSparseMemoryRequirements
+        183   B6 00009840 vkGetDeviceImageSubresourceLayout
+        184   B7 00004FC0 vkGetDeviceMemoryCommitment
+        185   B8 000074C0 vkGetDeviceMemoryOpaqueCaptureAddress
+        186   B9 0000A650 vkGetDeviceProcAddr
+        187   BA 000098C0 vkGetDeviceQueue
+        188   BB 00010570 vkGetDeviceQueue2
+        189   BC 0000CC80 vkGetDisplayModeProperties2KHR
+        190   BD 00002A70 vkGetDisplayModePropertiesKHR
+        191   BE 00005200 vkGetDisplayPlaneCapabilities2KHR
+        192   BF 000015E0 vkGetDisplayPlaneCapabilitiesKHR
+        193   C0 00002E90 vkGetDisplayPlaneSupportedDisplaysKHR
+        194   C1 00006400 vkGetEventStatus
+        195   C2 00010FB0 vkGetFenceStatus
+        196   C3 0000BFA0 vkGetImageMemoryRequirements
+        197   C4 00008930 vkGetImageMemoryRequirements2
+        198   C5 00011030 vkGetImageSparseMemoryRequirements
+        199   C6 0000E6D0 vkGetImageSparseMemoryRequirements2
+        200   C7 00002880 vkGetImageSubresourceLayout
+        201   C8 000103C0 vkGetImageSubresourceLayout2
+        202   C9 0000F200 vkGetInstanceProcAddr
+        203   CA 00004980 vkGetPhysicalDeviceDisplayPlaneProperties2KHR
+        204   CB 0000C3B0 vkGetPhysicalDeviceDisplayPlanePropertiesKHR
+        205   CC 00006E70 vkGetPhysicalDeviceDisplayProperties2KHR
+        206   CD 0000E780 vkGetPhysicalDeviceDisplayPropertiesKHR
+        207   CE 00008A90 vkGetPhysicalDeviceExternalBufferProperties
+        208   CF 00001530 vkGetPhysicalDeviceExternalFenceProperties
+        209   D0 000050F0 vkGetPhysicalDeviceExternalSemaphoreProperties
+        210   D1 0000F470 vkGetPhysicalDeviceFeatures
+        211   D2 00003BA0 vkGetPhysicalDeviceFeatures2
+        212   D3 0000F2B0 vkGetPhysicalDeviceFormatProperties
+        213   D4 00007BD0 vkGetPhysicalDeviceFormatProperties2
+        214   D5 0000CAA0 vkGetPhysicalDeviceImageFormatProperties
+        215   D6 0000B0A0 vkGetPhysicalDeviceImageFormatProperties2
+        216   D7 000072D0 vkGetPhysicalDeviceMemoryProperties
+        217   D8 00007420 vkGetPhysicalDeviceMemoryProperties2
+        218   D9 00008E90 vkGetPhysicalDevicePresentRectanglesKHR
+        219   DA 0000BA50 vkGetPhysicalDeviceProperties
+        220   DB 0000ECA0 vkGetPhysicalDeviceProperties2
+        221   DC 0000D520 vkGetPhysicalDeviceQueueFamilyProperties
+        222   DD 00007920 vkGetPhysicalDeviceQueueFamilyProperties2
+        223   DE 000087C0 vkGetPhysicalDeviceSparseImageFormatProperties
+        224   DF 0000D960 vkGetPhysicalDeviceSparseImageFormatProperties2
+        225   E0 0000B450 vkGetPhysicalDeviceSurfaceCapabilities2KHR
+        226   E1 0000F170 vkGetPhysicalDeviceSurfaceCapabilitiesKHR
+        227   E2 0000CEF0 vkGetPhysicalDeviceSurfaceFormats2KHR
+        228   E3 0000D4B0 vkGetPhysicalDeviceSurfaceFormatsKHR
+        229   E4 00007120 vkGetPhysicalDeviceSurfacePresentModesKHR
+        230   E5 00008040 vkGetPhysicalDeviceSurfaceSupportKHR
+        231   E6 00007510 vkGetPhysicalDeviceToolProperties
+        232   E7 0000ACD0 vkGetPhysicalDeviceWin32PresentationSupportKHR
+        233   E8 00010E40 vkGetPipelineCacheData
+        234   E9 00008600 vkGetPrivateData
+        235   EA 000040F0 vkGetQueryPoolResults
+        236   EB 0000A810 vkGetRenderAreaGranularity
+        237   EC 00006320 vkGetRenderingAreaGranularity
+        238   ED 000069E0 vkGetSemaphoreCounterValue
+        239   EE 000078E0 vkGetSwapchainImagesKHR
+        240   EF 0000EA40 vkInvalidateMappedMemoryRanges
+        241   F0 00005370 vkMapMemory
+        242   F1 00002C40 vkMapMemory2
+        243   F2 000067D0 vkMergePipelineCaches
+        244   F3 0000B810 vkQueueBindSparse
+        245   F4 000029A0 vkQueuePresentKHR
+        246   F5 0000EBC0 vkQueueSubmit
+        247   F6 000066A0 vkQueueSubmit2
+        248   F7 0000CE50 vkQueueWaitIdle
+        249   F8 00005830 vkResetCommandBuffer
+        250   F9 00006E10 vkResetCommandPool
+        251   FA 00005360 vkResetDescriptorPool
+        252   FB 000116D0 vkResetEvent
+        253   FC 0000FDD0 vkResetFences
+        254   FD 00010C20 vkResetQueryPool
+        255   FE 00003260 vkSetEvent
+        256   FF 00001260 vkSetPrivateData
+        257  100 00004A30 vkSignalSemaphore
+        258  101 000084E0 vkTransitionImageLayout
+        259  102 00008B80 vkTrimCommandPool
+        260  103 0000E580 vkUnmapMemory
+        261  104 00009A10 vkUnmapMemory2
+        262  105 0000B850 vkUpdateDescriptorSetWithTemplate
+        263  106 00005560 vkUpdateDescriptorSets
+        264  107 00007050 vkWaitForFences
+        265  108 0000FB20 vkWaitSemaphores
+
+  Summary
+
+        1000 .00cfg
+        4000 .data
+        1000 .fptable
+        1000 .gehcont
+        3000 .gfids
+        2000 .idata
+        B000 .pdata
+       67000 .rdata
+        2000 .reloc
+        1000 .rsrc
+      128000 .text
