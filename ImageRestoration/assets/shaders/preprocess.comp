@@ -1,0 +1,21 @@
+#version 450
+
+layout (local_size_x = 16, local_size_y = 16) in;
+
+layout (binding = 0) uniform sampler2D inputImage;      // 원본 이미지
+layout (binding = 1, rgba32f) uniform image2D outputImage; // 224x224 정규화된 이미지
+
+
+void main() {
+    ivec2 outputSize = imageSize(outputImage);
+    ivec2 coords = ivec2(gl_GlobalInvocationID.xy);
+    if (coords.x >= outputSize.x || coords.y >= outputSize.y) return;
+    // 1. Bilinear sampling (sampler2D를 통해 자동으로 수행됨)
+    vec2 uv = (vec2(coords) + 0.5) / vec2(outputSize);
+    vec3 color = texture(inputImage, uv).rgb;
+    // 2. EfficientNet-B0 정규화 (Mean: [0.485, 0.456, 0.406], Std: [0.229, 0.224, 0.225])
+    vec3 mean = vec3(0.485, 0.456, 0.406);
+    vec3 std = vec3(0.229, 0.224, 0.225);
+    vec3 normalizedColor = (color - mean) / std;
+    imageStore(outputImage, coords, vec4(normalizedColor, 1.0));
+}

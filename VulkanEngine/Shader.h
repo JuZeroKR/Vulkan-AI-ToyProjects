@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "VulkanTool.h"
 #include "Context.h"
@@ -23,6 +23,8 @@ namespace caaVk
 
         void printReflectionInfo();
         void cleanup();
+
+        auto shaderModule() const -> VkShaderModule { return shaderModule_; }
 
     private:
         Context& ctx_; // for creation and cleanup

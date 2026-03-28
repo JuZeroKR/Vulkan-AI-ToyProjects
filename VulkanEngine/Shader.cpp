@@ -1,4 +1,4 @@
-#include "Shader.h"
+﻿#include "Shader.h"
 #include "Logger.h"
 #include <algorithm>
 #include <vector>
@@ -13,7 +13,7 @@ namespace caaVk
             exitWithMessage("Shader file does not have .spv extension: {}", spvFilename);
         }
 
-        // 경로와 마지막 .spv 제거 ex: path/triangle.vert.spv -> triangle.vert
+        // 寃쎈줈? 留덉?留?.spv ?쒓굅 ex: path/triangle.vert.spv -> triangle.vert
         size_t lastSlash = spvFilename.find_last_of("/\\");
         size_t start = (lastSlash == std::string::npos) ? 0 : lastSlash + 1;
         size_t end = spvFilename.length();
@@ -100,6 +100,10 @@ namespace caaVk
         shaderModuleCI.codeSize = shaderCode.size();
         shaderModuleCI.pCode = alignedCode.data();
         
+        // ?붿뒪?ъ뿉 ?덈뒗 ?먯씠???뚯뒪(二쇰줈 SPIR-V 諛붿씠?덈━)瑜?GPU媛 ?댄빐?????덈룄濡?Vulkan 媛앹껜
+        /*
+        VkPipelineShaderStageCreateInfo : Vertex ?뱀? Fragment 泥섎━ 留↔?.
+        */
         VkResult result = vkCreateShaderModule(ctx_.device(), &shaderModuleCI, nullptr, &shaderModule);
         if (result != VK_SUCCESS) {
             printLog("vkCreateShaderModule failed for shader: {} with result: {}", name_, getResultString(result));
@@ -164,7 +168,7 @@ namespace caaVk
             const SpvReflectInterfaceVariable* var = inputVars[i];
 
             if (var->location == uint32_t(-1) || string(var->name) == "gl_VertexIndex") {
-                // print("  No attribute\n"); // 셰이더에 in이 없는 경우
+                // print("  No attribute\n"); // ?곗씠?붿뿉 in???녿뒗 寃쎌슦
                 continue;
             }
 
@@ -174,7 +178,7 @@ namespace caaVk
             desc.location = var->location;
             desc.binding = 0;
             desc.format = getVkFormatFromSpvReflectFormat(var->format);
-            desc.offset = offset; // Offset은 나중에 계산할 예정
+            desc.offset = offset; // Offset? ?섏쨷??怨꾩궛???덉젙
 
             attributes.push_back(desc);
 

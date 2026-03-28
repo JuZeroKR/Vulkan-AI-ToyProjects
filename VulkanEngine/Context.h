@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <vulkan/vulkan.h>
 
@@ -9,8 +9,8 @@
 
 #include "VulkanTool.h"
 #include "DescriptorPool.h"
+#include "CommandBuffer.h"
 #include "Logger.h"
-#include "Shader.h"
 
 namespace caaVk {
 	using namespace std;
@@ -50,6 +50,13 @@ namespace caaVk {
 			return descriptorPool_;
 		}
 
+		auto getMemoryTypeIndex(uint32_t typeFilter, VkMemoryPropertyFlags properties) -> uint32_t;
+
+		auto createTransferCommandBuffer(VkCommandBufferLevel level, bool begin = false) -> CommandBuffer;
+		auto createComputeCommandBuffer(VkCommandBufferLevel level, bool begin = false) -> CommandBuffer;
+
+		auto pipelineCache() -> VkPipelineCache { return pipelineCache_; }
+
 
 	private:
 		VkDevice _device;
@@ -64,9 +71,9 @@ namespace caaVk {
 		VkQueue graphicsQueue_{ VK_NULL_HANDLE };
 		VkQueue computeQueue_{ VK_NULL_HANDLE };
 		VkQueue transferQueue_{ VK_NULL_HANDLE };
-		// VkQueue presentQueue_{VK_NULL_HANDLE}; // º¸Åë graphicsQueue¿Í ÇÔ²² »ç¿ë
-		// ¼­·Î ´Ù¸¥ Å¥ ³¢¸®´Â º´·Ä·Î ÀÛ¾÷À» ¼öÇàÇÒ ¼ö ÀÖ½À´Ï´Ù.
-		// GPU ¼º´É¿¡ ¿©À¯°¡ ÀÖ´Ù¸é ÃÖÀûÈ­¿¡ È°¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
+		// VkQueue presentQueue_{VK_NULL_HANDLE}; // è¹‚ëŒ„ë„» graphicsQueue?Â€ ?â‘£í¡ ?ÑŠìŠœ
+		// ?ì’•ì¤ˆ ?ã…»â…¨ ???ì‡°â”??è¹‚ë¬ì ¹æ¿¡??ë¬’ë¾½???ì„‘ë»¾?????ë‰ë’¿?ëˆë–.
+		// GPU ?ê¹…ë’«???ÑŠì‘€åª›Â€ ?ëˆë–ï§?ï§¤ì’–ìŸ»?ë¶¿ë¿‰ ?ì’–ìŠœ?????ë‰ë’¿?ëˆë–.
 
 		VkPipelineCache pipelineCache_{ VK_NULL_HANDLE };
 

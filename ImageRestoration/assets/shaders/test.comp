@@ -7,6 +7,7 @@ layout (set = 0, binding = 1, rgba32f) uniform writeonly image2D outputImage;
 
 void main() 
 {
+    // gl_GlobalInvocationID : 이미지 전체의 픽설 좌표를 나타냄
     ivec2 imageCoords = ivec2(gl_GlobalInvocationID.xy);
     
     // Get image dimensions

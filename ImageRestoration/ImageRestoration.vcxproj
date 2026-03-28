@@ -74,10 +74,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\;$(ProjectDir)..\Vulkan\Include;$(ProjectDir)..\VulkanEngine;$(ProjectDir)..\VulkanEngine\include;$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Include\spirv-headers;$(VULKAN_SDK)\Source\SPIRV-Reflect\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\Vulkan\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -118,7 +114,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>E:\GitHub\HonglabVulkan-main\vcpkg\packages\ktx_x64-windows\debug\lib;$(ProjectDir)..\Vulkan\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ktx.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /y "E:\GitHub\HonglabVulkan-main\vcpkg\packages\ktx_x64-windows\debug\bin\ktx.dll" "$(OutDir)ktx.dll"
+copy /y "E:\GitHub\HonglabVulkan-main\vcpkg\packages\zstd_x64-windows\debug\bin\zstd.dll" "$(OutDir)zstd.dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -133,7 +135,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>E:\GitHub\HonglabVulkan-main\vcpkg\packages\ktx_x64-windows\lib;$(ProjectDir)..\Vulkan\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ktx.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /y "E:\GitHub\HonglabVulkan-main\vcpkg\packages\ktx_x64-windows\bin\ktx.dll" "$(OutDir)ktx.dll"
+copy /y "E:\GitHub\HonglabVulkan-main\vcpkg\packages\zstd_x64-windows\bin\zstd.dll" "$(OutDir)zstd.dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ImageRestoration.h" />
@@ -155,6 +163,9 @@
     <ProjectReference Include="..\VulkanEngine\VulkanEngine.vcxproj">
       <Project>{ca964723-8f75-4bf6-972f-8d4340e87f2e}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\test.comp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

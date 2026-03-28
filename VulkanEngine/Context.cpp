@@ -1,4 +1,4 @@
-#include "Context.h"
+﻿#include "Context.h"
 #include <algorithm>
 
 namespace caaVk {
@@ -110,14 +110,14 @@ namespace caaVk {
 
 
 	/*
-	Instance 생성 순서
-	1. Extension 탐색 (vkEnumerateInstanceExtensionProperties)
-	2. Extension에서 요구한 스펙있는지 확인
-	3. DebugUtil 준비 (VkDebugUtilsMessengerCreateInfoEXT)
-	4. InstanceLayerProperties 가져오기 (현재 시스템에 설치되어 사용 가능한 '인스턴스 레이어(Instance Layers)'의 목록을 확인)
-		- Layer가 있으면 App이 호출하면 Layer에 거쳐서 드라이버로 감.
-	5. Instance 생성
-	6. Debug 생성
+	Instance ?앹꽦 ?쒖꽌
+	1. Extension ?먯깋 (vkEnumerateInstanceExtensionProperties)
+	2. Extension?먯꽌 ?붽뎄???ㅽ럺?덈뒗吏 ?뺤씤
+	3. DebugUtil 以鍮?(VkDebugUtilsMessengerCreateInfoEXT)
+	4. InstanceLayerProperties 媛?몄삤湲?(?꾩옱 ?쒖뒪?쒖뿉 ?ㅼ튂?섏뼱 ?ъ슜 媛?ν븳 '?몄뒪?댁뒪 ?덉씠??Instance Layers)'??紐⑸줉???뺤씤)
+		- Layer媛 ?덉쑝硫?App???몄텧?섎㈃ Layer??嫄곗퀜???쒕씪?대쾭濡?媛?
+	5. Instance ?앹꽦
+	6. Debug ?앹꽦
 	*/
 
 	void caaVk::Context::createInstance(vector<const char*> instanceExtensions)
@@ -131,7 +131,7 @@ namespace caaVk {
 		const uint32_t apiVersion = VK_API_VERSION_1_3;
 		const string name = "Vulkan Examples";
 
-		// Extension 검색
+		// Extension 寃??
 		vector<string> supportedInstanceExtensions;
 		uint32_t extCount = 0;
 		vkEnumerateInstanceExtensionProperties(nullptr, &extCount, nullptr);
@@ -195,7 +195,7 @@ namespace caaVk {
 		}
 
 
-		// DebugUtil 등록
+		// DebugUtil ?깅줉
 		VkDebugUtilsMessengerCreateInfoEXT debugUtilsMessengerCI{};
 		if (useValidation) {
 			debugUtilsMessengerCI.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
@@ -305,16 +305,16 @@ namespace caaVk {
 	}
 
 	/*
-	Logical Device : Physical 역할하는 Device (Vulkan 실제 소통하는 Device)
-	- 필요한 Queue Type : Compute, Graphics 혹은 Transit
-	- QueueFamily가 Index 몇번인지 확인 (queueFamily가 몇번 Index인지는 PhysicalDevice에서 확인했었음.)
-	- Device를 만들때 이제 extension을 확인해줘야함.
+	Logical Device : Physical ??븷?섎뒗 Device (Vulkan ?ㅼ젣 ?뚰넻?섎뒗 Device)
+	- ?꾩슂??Queue Type : Compute, Graphics ?뱀? Transit
+	- QueueFamily媛 Index 紐뉖쾲?몄? ?뺤씤 (queueFamily媛 紐뉖쾲 Index?몄???PhysicalDevice?먯꽌 ?뺤씤?덉뿀??)
+	- Device瑜?留뚮뱾???댁젣 extension???뺤씤?댁쨾?쇳븿.
 		- VK_KHR_SWAPCHAIN_EXTENSION_NAME
-		- Physical Device에서 가져온 features 넣어줘야함,. (Shader 지원여부이런것들..)
-	- Device 생성 시 체이닝을통한 확장
-		- pNext에 다음 것을 넣어줌.
-	- Device 생성
-	- Command 생성
+		- Physical Device?먯꽌 媛?몄삩 features ?ｌ뼱以섏빞??. (Shader 吏?먯뿬遺?대윴寃껊뱾..)
+	- Device ?앹꽦 ??泥댁씠?앹쓣?듯븳 ?뺤옣
+		- pNext???ㅼ쓬 寃껋쓣 ?ｌ뼱以?
+	- Device ?앹꽦
+	- Command ?앹꽦
 	*/
 
 	void caaVk::Context::createLogicalDevice(bool useSwapChain)
@@ -396,7 +396,7 @@ namespace caaVk {
 		physicalDeviceFeatures2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
 		physicalDeviceFeatures2.features = enabledFeatures_;
 		physicalDeviceFeatures2.pNext = &enabledFeatures13;
-		deviceCreateInfo.pEnabledFeatures = nullptr; // 둘다 Feature가 있으면 안됨.
+		deviceCreateInfo.pEnabledFeatures = nullptr; // ?섎떎 Feature媛 ?덉쑝硫??덈맖.
 		deviceCreateInfo.pNext = &physicalDeviceFeatures2;
 
 		if (deviceExtensions.size() > 0) {
@@ -453,7 +453,7 @@ namespace caaVk {
 	}
 
 	/*
-	파이프라인 생성 속도를 비약적으로 높이기 위해 컴파일된 데이터를 저장하는 '캐시(Cache) 객체
+	?뚯씠?꾨씪???앹꽦 ?띾룄瑜?鍮꾩빟?곸쑝濡??믪씠湲??꾪빐 而댄뙆?쇰맂 ?곗씠?곕? ??ν븯??'罹먯떆(Cache) 媛앹껜
 	*/
 
 	void caaVk::Context::createPipelineCache()
@@ -470,10 +470,10 @@ namespace caaVk {
 	{
 
 		/*
-		• VK_FORMAT_D32_SFLOAT: 32-bit float for depth
-		• VK_FORMAT_D32_SFLOAT_S8_UINT: 32-bit signed float for depth and 8 bit
+		??VK_FORMAT_D32_SFLOAT: 32-bit float for depth
+		??VK_FORMAT_D32_SFLOAT_S8_UINT: 32-bit signed float for depth and 8 bit
 		stencil component
-		• VK_FORMAT_D24_UNORM_S8_UINT: 24-bit float for depth and 8 bit stencil
+		??VK_FORMAT_D24_UNORM_S8_UINT: 24-bit float for depth and 8 bit stencil
 		component
 		*/
 		std::vector<VkFormat> formatList = {
@@ -495,12 +495,12 @@ namespace caaVk {
 	}
 
 	/*
-	GPU 개수 확인
-	1. PhysicalDevice 확인 및 선택
-	2. PhysicalDevice Feature 선택
-		-  Shader 여부 확인 : vkGetPhysicalDeviceFeatures
-		- 어떤 메모리 구조를 가지고 있는지 확인 : vkGetPhysicalDeviceMemoryProperties
-		- Family Queue 확인 : vkGetPhysicalDeviceQueueFamilyProperties
+	GPU 媛쒖닔 ?뺤씤
+	1. PhysicalDevice ?뺤씤 諛??좏깮
+	2. PhysicalDevice Feature ?좏깮
+		-  Shader ?щ? ?뺤씤 : vkGetPhysicalDeviceFeatures
+		- ?대뼡 硫붾え由?援ъ“瑜?媛吏怨??덈뒗吏 ?뺤씤 : vkGetPhysicalDeviceMemoryProperties
+		- Family Queue ?뺤씤 : vkGetPhysicalDeviceQueueFamilyProperties
 	3. 
 
 	*/
@@ -703,6 +703,26 @@ namespace caaVk {
 			}
 		}
 		return false;
+	}
+	/*
+	GPU媛 媛吏??щ윭 醫낅쪟??硫붾え由?以??곕━媛 ?꾩슂??議곌굔????留욌뒗 硫붾え由ъ쓽 踰덊샇(?몃뜳??瑜?李얠븘二쇰뒗 ?⑥닔
+	*/
+	auto Context::getMemoryTypeIndex(uint32_t typeFilter, VkMemoryPropertyFlags properties) -> uint32_t {
+		for (uint32_t i = 0; i < deviceMemoryProperties_.memoryTypeCount; i++) {
+			if ((typeFilter & (1 << i)) && (deviceMemoryProperties_.memoryTypes[i].propertyFlags & properties) == properties) {
+				return i;
+			}
+		}
+		exitWithMessage("failed to find suitable memory type!");
+		return uint32_t(-1);
+	}
+
+	auto Context::createTransferCommandBuffer(VkCommandBufferLevel level, bool begin) -> CommandBuffer {
+		return CommandBuffer(_device, transferCommandPool_, transferQueue_, level, begin);
+	}
+
+	auto Context::createComputeCommandBuffer(VkCommandBufferLevel level, bool begin) -> CommandBuffer {
+		return CommandBuffer(_device, computeCommandPool_, computeQueue_, level, begin);
 	}
 
 	auto Context::createCommandPool(uint32_t queueFamilyIndex,

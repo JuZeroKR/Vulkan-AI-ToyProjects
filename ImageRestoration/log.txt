@@ -1,26 +1,25 @@
 Supported Instance Extensions:
-  VK_KHR_surface
-  VK_KHR_win32_surface
+  VK_KHR_device_group_creation
+  VK_KHR_display
+  VK_KHR_external_fence_capabilities
   VK_KHR_external_memory_capabilities
   VK_KHR_external_semaphore_capabilities
-  VK_KHR_external_fence_capabilities
+  VK_KHR_get_display_properties2
   VK_KHR_get_physical_device_properties2
   VK_KHR_get_surface_capabilities2
-  VK_KHR_device_group_creation
-  VK_EXT_swapchain_colorspace
-  VK_EXT_debug_utils
-  VK_KHR_display
-  VK_KHR_get_display_properties2
+  VK_KHR_surface
+  VK_KHR_surface_maintenance1
   VK_KHR_surface_protected_capabilities
+  VK_KHR_win32_surface
   VK_EXT_debug_report
+  VK_EXT_debug_utils
   VK_EXT_direct_mode_display
   VK_EXT_surface_maintenance1
+  VK_EXT_swapchain_colorspace
   VK_NV_external_memory_capabilities
   VK_KHR_portability_enumeration
   VK_LUNARG_direct_driver_loading
 Required Instance Extensions:
-  VK_KHR_surface
-  VK_KHR_win32_surface
   VK_KHR_portability_enumeration
   VK_EXT_debug_utils
 Available instance layers:
@@ -61,7 +60,7 @@ Device Memory Properties:
     Memory Type 3: heap 1, flags: HOST_VISIBLE HOST_COHERENT HOST_CACHED 
     Memory Type 4: heap 0, flags: DEVICE_LOCAL HOST_VISIBLE HOST_COHERENT 
   Memory Heap Count: 2
-    Memory Heap 0: 11855 MB, flags: DEVICE_LOCAL 
+    Memory Heap 0: 11943 MB, flags: DEVICE_LOCAL 
     Memory Heap 1: 16108 MB, flags: NONE 
 
 Queue Family Properties: 6

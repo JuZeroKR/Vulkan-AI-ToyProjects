@@ -1,19 +1,21 @@
-#pragma once
+﻿#pragma once
 
 #include <vulkan/vulkan.h>
 
-class VulkanEngine {
-public:
-    VulkanEngine();
-    ~VulkanEngine();
+namespace caaVk {
+    class VulkanEngine {
+    public:
+        VulkanEngine();
+        ~VulkanEngine();
 
-    void init();
-    void cleanup();
+        void init();
+        void cleanup();
 
-    VkInstance getInstance() const { return instance; }
+        VkInstance getInstance() const { return instance; }
 
-private:
-    void createInstance();
+    private:
+        void createInstance();
 
-    VkInstance instance;
-};
+        VkInstance instance;
+    };
+}
