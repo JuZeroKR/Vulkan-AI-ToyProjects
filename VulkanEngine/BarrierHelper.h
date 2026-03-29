@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <functional>
@@ -105,8 +105,8 @@ namespace caaVk {
                 ? (arrayLayers_ - baseArrayLayer)
                 : layerCount;
 
-            // Skip redundant transitions
-            if (currentLayout_ == newLayout && currentAccess_ == newAccess && baseMipLevel == 0 &&
+            // Skip redundant transitions - MUST check currentStage_ as well!
+            if (currentLayout_ == newLayout && currentAccess_ == newAccess && currentStage_ == newStage && baseMipLevel == 0 &&
                 actualLevelCount == mipLevels_ && baseArrayLayer == 0 &&
                 actualLayerCount == arrayLayers_) {
                 return;

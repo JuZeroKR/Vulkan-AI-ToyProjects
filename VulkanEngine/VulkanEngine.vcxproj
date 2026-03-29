@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)..\Vulkan\Include;$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Include\spirv-headers;$(VULKAN_SDK)\Source\SPIRV-Reflect\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir)..\Vulkan\Include;$(VULKAN_SDK)\Include;$(VULKAN_SDK)\Include\spirv-headers;$(VULKAN_SDK)\Source\SPIRV-Reflect\include;$(ProjectDir)..\AI\ncnn_tools\ncnn-20240410-windows-vs2022\x64\include;$(ProjectDir)..\AI\ncnn_tools\ncnn-20240410-windows-vs2022\x64\include\ncnn;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -106,6 +106,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;SPIRV_REFLECT_USE_SYSTEM_SPIRV_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -126,6 +127,7 @@
     <ClInclude Include="DescriptorPool.h" />
     <ClInclude Include="DescriptorSet.h" />
     <ClInclude Include="Image2D.h" />
+    <ClInclude Include="InferenceEngine.h" />
     <ClInclude Include="include\ktx.h" />
     <ClInclude Include="include\ktxvulkan.h" />
     <ClInclude Include="include\stb_image.h" />
@@ -147,6 +149,7 @@
     <ClCompile Include="DescriptorPool.cpp" />
     <ClCompile Include="DescriptorSet.cpp" />
     <ClCompile Include="Image2D.cpp" />
+    <ClCompile Include="InferenceEngine.cpp" />
     <ClCompile Include="MappedBuffer.cpp" />
     <ClCompile Include="Pipeline.cpp" />
     <ClCompile Include="PipelineCompute.cpp" />

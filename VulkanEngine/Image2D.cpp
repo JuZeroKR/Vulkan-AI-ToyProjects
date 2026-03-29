@@ -1,4 +1,4 @@
-﻿#include "Image2D.h"
+#include "Image2D.h"
 #include "Context.h"
 #include "Logger.h"
 #include "MappedBuffer.h"
@@ -61,6 +61,37 @@ namespace caaVk {
         return height_;
     }
 
+    void Image2D::downloadToPixels(unsigned char* outData)
+    {
+        if (outData == nullptr) return;
+
+        VkDeviceSize bufferSize = width_ * height_ * 4; // Assuming RGBA8
+
+        // 1. Create staging buffer for download
+        MappedBuffer stagingBuffer(ctx_);
+        stagingBuffer.createStagingBuffer(bufferSize, nullptr); // Create empty staging buffer
+
+        // 2. Transition image to Transfer Src
+        CommandBuffer copyCmd = ctx_.createTransferCommandBuffer(VK_COMMAND_BUFFER_LEVEL_PRIMARY, true);
+        
+        transitionToTransferSrc(copyCmd.handle());
+
+        // 3. Copy Image to Buffer
+        VkBufferImageCopy region{};
+        region.bufferOffset = 0;
+        region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+        region.imageSubresource.layerCount = 1;
+        region.imageExtent = { width_, height_, 1 };
+
+        vkCmdCopyImageToBuffer(copyCmd.handle(), image_, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, stagingBuffer.buffer(), 1, &region);
+
+        copyCmd.submitAndWait();
+
+        // 4. Copy from staging buffer to outData
+        void* mappedPtr = stagingBuffer.mapped();
+        memcpy(outData, mappedPtr, bufferSize);
+    }
+
     void Image2D::createFromPixelData(unsigned char* pixelData, int width, int height, int channels,
         bool sRGB)
     {
@@ -104,9 +135,9 @@ namespace caaVk {
         vkCmdCopyBufferToImage(copyCmd.handle(), stagingBuffer.buffer(), image_,
             VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &bufferCopyRegion);
 
-        resourceBinding_.barrierHelper_.transitionTo(copyCmd.handle(), VK_ACCESS_2_SHADER_READ_BIT,
+        resourceBinding_.barrierHelper_.transitionTo(copyCmd.handle(), VK_ACCESS_2_TRANSFER_WRITE_BIT,
             VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
-            VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT);
+            VK_PIPELINE_STAGE_2_TRANSFER_BIT);
 
         copyCmd.submitAndWait();
     }
@@ -302,7 +333,7 @@ namespace caaVk {
             VK_IMAGE_USAGE_STORAGE_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT |
             VK_IMAGE_USAGE_TRANSFER_DST_BIT;
 
-        createImage(VK_FORMAT_R16G16B16A16_SFLOAT, static_cast<uint32_t>(width),
+        createImage(VK_FORMAT_R8G8B8A8_UNORM, static_cast<uint32_t>(width),
             static_cast<uint32_t>(height), VK_SAMPLE_COUNT_1_BIT, usage,
             VK_IMAGE_ASPECT_COLOR_BIT, 1, 1, 0, VK_IMAGE_VIEW_TYPE_2D);
     }

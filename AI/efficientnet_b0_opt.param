@@ -1,0 +1,208 @@
+7767517
+206 248
+Input                    input                    0 1 input
+Split                    splitncnn_input0         1 2 input input_splitncnn_0 input_splitncnn_1
+MemoryData               val_30                   0 1 val_30 0=2
+Split                    splitncnn_0              1 17 val_30 val_30_splitncnn_0 val_30_splitncnn_1 val_30_splitncnn_2 val_30_splitncnn_3 val_30_splitncnn_4 val_30_splitncnn_5 val_30_splitncnn_6 val_30_splitncnn_7 val_30_splitncnn_8 val_30_splitncnn_9 val_30_splitncnn_10 val_30_splitncnn_11 val_30_splitncnn_12 val_30_splitncnn_13 val_30_splitncnn_14 val_30_splitncnn_15 val_30_splitncnn_16
+MemoryData               val_629                  0 1 val_629 0=1
+Shape                    node_Shape_0             1 1 input_splitncnn_1 val_0
+Convolution              node_Conv_779            1 1 input_splitncnn_0 getitem 0=32 3=2 4=1 5=1
+Swish                    node_silu                1 1 getitem silu
+ConvolutionDepthWise     node_Conv_781            1 1 silu getitem_3 0=32 4=1 5=1 7=32
+Swish                    node_silu_1              1 1 getitem_3 silu_1
+Split                    splitncnn_1              1 2 silu_1 silu_1_splitncnn_0 silu_1_splitncnn_1
+Reduction                node_mean                2 1 silu_1_splitncnn_1 val_30_splitncnn_16 mean 0=3 4=1
+Convolution              node_conv2d_2            1 1 mean conv2d_2 0=8 5=1
+Swish                    node_silu_2              1 1 conv2d_2 silu_2
+Convolution              node_conv2d_3            1 1 silu_2 sigmoid 0=32 5=1 9=4
+BinaryOp                 node_mul_64              2 1 sigmoid silu_1_splitncnn_0 mul_64 0=2
+Convolution              node_Conv_783            1 1 mul_64 getitem_6 0=16 5=1
+Convolution              node_Conv_785            1 1 getitem_6 getitem_9 0=96 5=1
+Swish                    node_silu_3              1 1 getitem_9 silu_3
+ConvolutionDepthWise     node_Conv_787            1 1 silu_3 getitem_12 0=96 3=2 4=1 5=1 7=96
+Swish                    node_silu_4              1 1 getitem_12 silu_4
+Split                    splitncnn_2              1 2 silu_4 silu_4_splitncnn_0 silu_4_splitncnn_1
+Reduction                node_mean_1              2 1 silu_4_splitncnn_1 val_30_splitncnn_15 mean_1 0=3 4=1
+Convolution              node_conv2d_7            1 1 mean_1 conv2d_7 0=4 5=1
+Swish                    node_silu_5              1 1 conv2d_7 silu_5
+Convolution              node_conv2d_8            1 1 silu_5 sigmoid_1 0=96 5=1 9=4
+BinaryOp                 node_mul_138             2 1 sigmoid_1 silu_4_splitncnn_0 mul_138 0=2
+Convolution              node_Conv_789            1 1 mul_138 getitem_15 0=24 5=1
+Split                    splitncnn_3              1 2 getitem_15 getitem_15_splitncnn_0 getitem_15_splitncnn_1
+Convolution              node_Conv_791            1 1 getitem_15_splitncnn_1 getitem_18 0=144 5=1
+Swish                    node_silu_6              1 1 getitem_18 silu_6
+ConvolutionDepthWise     node_Conv_793            1 1 silu_6 getitem_21 0=144 4=1 5=1 7=144
+Swish                    node_silu_7              1 1 getitem_21 silu_7
+Split                    splitncnn_4              1 2 silu_7 silu_7_splitncnn_0 silu_7_splitncnn_1
+Reduction                node_mean_2              2 1 silu_7_splitncnn_1 val_30_splitncnn_14 mean_2 0=3 4=1
+Convolution              node_conv2d_12           1 1 mean_2 conv2d_12 0=6 5=1
+Swish                    node_silu_8              1 1 conv2d_12 silu_8
+Convolution              node_conv2d_13           1 1 silu_8 sigmoid_2 0=144 5=1 9=4
+BinaryOp                 node_mul_212             2 1 sigmoid_2 silu_7_splitncnn_0 mul_212 0=2
+Convolution              node_Conv_795            1 1 mul_212 getitem_24 0=24 5=1
+BinaryOp                 node_add_274             2 1 getitem_24 getitem_15_splitncnn_0 add_274
+Convolution              node_Conv_797            1 1 add_274 getitem_27 0=144 5=1
+Swish                    node_silu_9              1 1 getitem_27 silu_9
+ConvolutionDepthWise     node_Conv_799            1 1 silu_9 getitem_30 0=144 3=2 4=2 5=1 7=144
+Swish                    node_silu_10             1 1 getitem_30 silu_10
+Split                    splitncnn_5              1 2 silu_10 silu_10_splitncnn_0 silu_10_splitncnn_1
+Reduction                node_mean_3              2 1 silu_10_splitncnn_1 val_30_splitncnn_13 mean_3 0=3 4=1
+Convolution              node_conv2d_17           1 1 mean_3 conv2d_17 0=6 5=1
+Swish                    node_silu_11             1 1 conv2d_17 silu_11
+Convolution              node_conv2d_18           1 1 silu_11 sigmoid_3 0=144 5=1 9=4
+BinaryOp                 node_mul_292             2 1 sigmoid_3 silu_10_splitncnn_0 mul_292 0=2
+Convolution              node_Conv_801            1 1 mul_292 getitem_33 0=40 5=1
+Split                    splitncnn_6              1 2 getitem_33 getitem_33_splitncnn_0 getitem_33_splitncnn_1
+Convolution              node_Conv_803            1 1 getitem_33_splitncnn_1 getitem_36 0=240 5=1
+Swish                    node_silu_12             1 1 getitem_36 silu_12
+ConvolutionDepthWise     node_Conv_805            1 1 silu_12 getitem_39 0=240 4=2 5=1 7=240
+Swish                    node_silu_13             1 1 getitem_39 silu_13
+Split                    splitncnn_7              1 2 silu_13 silu_13_splitncnn_0 silu_13_splitncnn_1
+Reduction                node_mean_4              2 1 silu_13_splitncnn_1 val_30_splitncnn_12 mean_4 0=3 4=1
+Convolution              node_conv2d_22           1 1 mean_4 conv2d_22 0=10 5=1
+Swish                    node_silu_14             1 1 conv2d_22 silu_14
+Convolution              node_conv2d_23           1 1 silu_14 sigmoid_4 0=240 5=1 9=4
+BinaryOp                 node_mul_366             2 1 sigmoid_4 silu_13_splitncnn_0 mul_366 0=2
+Convolution              node_Conv_807            1 1 mul_366 getitem_42 0=40 5=1
+BinaryOp                 node_add_466             2 1 getitem_42 getitem_33_splitncnn_0 add_466
+Convolution              node_Conv_809            1 1 add_466 getitem_45 0=240 5=1
+Swish                    node_silu_15             1 1 getitem_45 silu_15
+ConvolutionDepthWise     node_Conv_811            1 1 silu_15 getitem_48 0=240 3=2 4=1 5=1 7=240
+Swish                    node_silu_16             1 1 getitem_48 silu_16
+Split                    splitncnn_8              1 2 silu_16 silu_16_splitncnn_0 silu_16_splitncnn_1
+Reduction                node_mean_5              2 1 silu_16_splitncnn_1 val_30_splitncnn_11 mean_5 0=3 4=1
+Convolution              node_conv2d_27           1 1 mean_5 conv2d_27 0=10 5=1
+Swish                    node_silu_17             1 1 conv2d_27 silu_17
+Convolution              node_conv2d_28           1 1 silu_17 sigmoid_5 0=240 5=1 9=4
+BinaryOp                 node_mul_446             2 1 sigmoid_5 silu_16_splitncnn_0 mul_446 0=2
+Convolution              node_Conv_813            1 1 mul_446 getitem_51 0=80 5=1
+Split                    splitncnn_9              1 2 getitem_51 getitem_51_splitncnn_0 getitem_51_splitncnn_1
+Convolution              node_Conv_815            1 1 getitem_51_splitncnn_1 getitem_54 0=480 5=1
+Swish                    node_silu_18             1 1 getitem_54 silu_18
+ConvolutionDepthWise     node_Conv_817            1 1 silu_18 getitem_57 0=480 4=1 5=1 7=480
+Swish                    node_silu_19             1 1 getitem_57 silu_19
+Split                    splitncnn_10             1 2 silu_19 silu_19_splitncnn_0 silu_19_splitncnn_1
+Reduction                node_mean_6              2 1 silu_19_splitncnn_1 val_30_splitncnn_10 mean_6 0=3 4=1
+Convolution              node_conv2d_32           1 1 mean_6 conv2d_32 0=20 5=1
+Swish                    node_silu_20             1 1 conv2d_32 silu_20
+Convolution              node_conv2d_33           1 1 silu_20 sigmoid_6 0=480 5=1 9=4
+BinaryOp                 node_mul_520             2 1 sigmoid_6 silu_19_splitncnn_0 mul_520 0=2
+Convolution              node_Conv_819            1 1 mul_520 getitem_60 0=80 5=1
+BinaryOp                 node_add_658             2 1 getitem_60 getitem_51_splitncnn_0 add_658
+Split                    splitncnn_11             1 2 add_658 add_658_splitncnn_0 add_658_splitncnn_1
+Convolution              node_Conv_821            1 1 add_658_splitncnn_1 getitem_63 0=480 5=1
+Swish                    node_silu_21             1 1 getitem_63 silu_21
+ConvolutionDepthWise     node_Conv_823            1 1 silu_21 getitem_66 0=480 4=1 5=1 7=480
+Swish                    node_silu_22             1 1 getitem_66 silu_22
+Split                    splitncnn_12             1 2 silu_22 silu_22_splitncnn_0 silu_22_splitncnn_1
+Reduction                node_mean_7              2 1 silu_22_splitncnn_1 val_30_splitncnn_9 mean_7 0=3 4=1
+Convolution              node_conv2d_37           1 1 mean_7 conv2d_37 0=20 5=1
+Swish                    node_silu_23             1 1 conv2d_37 silu_23
+Convolution              node_conv2d_38           1 1 silu_23 sigmoid_7 0=480 5=1 9=4
+BinaryOp                 node_mul_600             2 1 sigmoid_7 silu_22_splitncnn_0 mul_600 0=2
+Convolution              node_Conv_825            1 1 mul_600 getitem_69 0=80 5=1
+BinaryOp                 node_add_762             2 1 getitem_69 add_658_splitncnn_0 add_762
+Convolution              node_Conv_827            1 1 add_762 getitem_72 0=480 5=1
+Swish                    node_silu_24             1 1 getitem_72 silu_24
+ConvolutionDepthWise     node_Conv_829            1 1 silu_24 getitem_75 0=480 4=2 5=1 7=480
+Swish                    node_silu_25             1 1 getitem_75 silu_25
+Split                    splitncnn_13             1 2 silu_25 silu_25_splitncnn_0 silu_25_splitncnn_1
+Reduction                node_mean_8              2 1 silu_25_splitncnn_1 val_30_splitncnn_8 mean_8 0=3 4=1
+Convolution              node_conv2d_42           1 1 mean_8 conv2d_42 0=20 5=1
+Swish                    node_silu_26             1 1 conv2d_42 silu_26
+Convolution              node_conv2d_43           1 1 silu_26 sigmoid_8 0=480 5=1 9=4
+BinaryOp                 node_mul_680             2 1 sigmoid_8 silu_25_splitncnn_0 mul_680 0=2
+Convolution              node_Conv_831            1 1 mul_680 getitem_78 0=112 5=1
+Split                    splitncnn_14             1 2 getitem_78 getitem_78_splitncnn_0 getitem_78_splitncnn_1
+Convolution              node_Conv_833            1 1 getitem_78_splitncnn_1 getitem_81 0=672 5=1
+Swish                    node_silu_27             1 1 getitem_81 silu_27
+ConvolutionDepthWise     node_Conv_835            1 1 silu_27 getitem_84 0=672 4=2 5=1 7=672
+Swish                    node_silu_28             1 1 getitem_84 silu_28
+Split                    splitncnn_15             1 2 silu_28 silu_28_splitncnn_0 silu_28_splitncnn_1
+Reduction                node_mean_9              2 1 silu_28_splitncnn_1 val_30_splitncnn_7 mean_9 0=3 4=1
+Convolution              node_conv2d_47           1 1 mean_9 conv2d_47 0=28 5=1
+Swish                    node_silu_29             1 1 conv2d_47 silu_29
+Convolution              node_conv2d_48           1 1 silu_29 sigmoid_9 0=672 5=1 9=4
+BinaryOp                 node_mul_754             2 1 sigmoid_9 silu_28_splitncnn_0 mul_754 0=2
+Convolution              node_Conv_837            1 1 mul_754 getitem_87 0=112 5=1
+BinaryOp                 node_add_954             2 1 getitem_87 getitem_78_splitncnn_0 add_954
+Split                    splitncnn_16             1 2 add_954 add_954_splitncnn_0 add_954_splitncnn_1
+Convolution              node_Conv_839            1 1 add_954_splitncnn_1 getitem_90 0=672 5=1
+Swish                    node_silu_30             1 1 getitem_90 silu_30
+ConvolutionDepthWise     node_Conv_841            1 1 silu_30 getitem_93 0=672 4=2 5=1 7=672
+Swish                    node_silu_31             1 1 getitem_93 silu_31
+Split                    splitncnn_17             1 2 silu_31 silu_31_splitncnn_0 silu_31_splitncnn_1
+Reduction                node_mean_10             2 1 silu_31_splitncnn_1 val_30_splitncnn_6 mean_10 0=3 4=1
+Convolution              node_conv2d_52           1 1 mean_10 conv2d_52 0=28 5=1
+Swish                    node_silu_32             1 1 conv2d_52 silu_32
+Convolution              node_conv2d_53           1 1 silu_32 sigmoid_10 0=672 5=1 9=4
+BinaryOp                 node_mul_834             2 1 sigmoid_10 silu_31_splitncnn_0 mul_834 0=2
+Convolution              node_Conv_843            1 1 mul_834 getitem_96 0=112 5=1
+BinaryOp                 node_add_1058            2 1 getitem_96 add_954_splitncnn_0 add_1058
+Convolution              node_Conv_845            1 1 add_1058 getitem_99 0=672 5=1
+Swish                    node_silu_33             1 1 getitem_99 silu_33
+ConvolutionDepthWise     node_Conv_847            1 1 silu_33 getitem_102 0=672 3=2 4=2 5=1 7=672
+Swish                    node_silu_34             1 1 getitem_102 silu_34
+Split                    splitncnn_18             1 2 silu_34 silu_34_splitncnn_0 silu_34_splitncnn_1
+Reduction                node_mean_11             2 1 silu_34_splitncnn_1 val_30_splitncnn_5 mean_11 0=3 4=1
+Convolution              node_conv2d_57           1 1 mean_11 conv2d_57 0=28 5=1
+Swish                    node_silu_35             1 1 conv2d_57 silu_35
+Convolution              node_conv2d_58           1 1 silu_35 sigmoid_11 0=672 5=1 9=4
+BinaryOp                 node_mul_914             2 1 sigmoid_11 silu_34_splitncnn_0 mul_914 0=2
+Convolution              node_Conv_849            1 1 mul_914 getitem_105 0=192 5=1
+Split                    splitncnn_19             1 2 getitem_105 getitem_105_splitncnn_0 getitem_105_splitncnn_1
+Convolution              node_Conv_851            1 1 getitem_105_splitncnn_1 getitem_108 0=1152 5=1
+Swish                    node_silu_36             1 1 getitem_108 silu_36
+ConvolutionDepthWise     node_Conv_853            1 1 silu_36 getitem_111 0=1152 4=2 5=1 7=1152
+Swish                    node_silu_37             1 1 getitem_111 silu_37
+Split                    splitncnn_20             1 2 silu_37 silu_37_splitncnn_0 silu_37_splitncnn_1
+Reduction                node_mean_12             2 1 silu_37_splitncnn_1 val_30_splitncnn_4 mean_12 0=3 4=1
+Convolution              node_conv2d_62           1 1 mean_12 conv2d_62 0=48 5=1
+Swish                    node_silu_38             1 1 conv2d_62 silu_38
+Convolution              node_conv2d_63           1 1 silu_38 sigmoid_12 0=1152 5=1 9=4
+BinaryOp                 node_mul_988             2 1 sigmoid_12 silu_37_splitncnn_0 mul_988 0=2
+Convolution              node_Conv_855            1 1 mul_988 getitem_114 0=192 5=1
+BinaryOp                 node_add_1250            2 1 getitem_114 getitem_105_splitncnn_0 add_1250
+Split                    splitncnn_21             1 2 add_1250 add_1250_splitncnn_0 add_1250_splitncnn_1
+Convolution              node_Conv_857            1 1 add_1250_splitncnn_1 getitem_117 0=1152 5=1
+Swish                    node_silu_39             1 1 getitem_117 silu_39
+ConvolutionDepthWise     node_Conv_859            1 1 silu_39 getitem_120 0=1152 4=2 5=1 7=1152
+Swish                    node_silu_40             1 1 getitem_120 silu_40
+Split                    splitncnn_22             1 2 silu_40 silu_40_splitncnn_0 silu_40_splitncnn_1
+Reduction                node_mean_13             2 1 silu_40_splitncnn_1 val_30_splitncnn_3 mean_13 0=3 4=1
+Convolution              node_conv2d_67           1 1 mean_13 conv2d_67 0=48 5=1
+Swish                    node_silu_41             1 1 conv2d_67 silu_41
+Convolution              node_conv2d_68           1 1 silu_41 sigmoid_13 0=1152 5=1 9=4
+BinaryOp                 node_mul_1068            2 1 sigmoid_13 silu_40_splitncnn_0 mul_1068 0=2
+Convolution              node_Conv_861            1 1 mul_1068 getitem_123 0=192 5=1
+BinaryOp                 node_add_1354            2 1 getitem_123 add_1250_splitncnn_0 add_1354
+Split                    splitncnn_23             1 2 add_1354 add_1354_splitncnn_0 add_1354_splitncnn_1
+Convolution              node_Conv_863            1 1 add_1354_splitncnn_1 getitem_126 0=1152 5=1
+Swish                    node_silu_42             1 1 getitem_126 silu_42
+ConvolutionDepthWise     node_Conv_865            1 1 silu_42 getitem_129 0=1152 4=2 5=1 7=1152
+Swish                    node_silu_43             1 1 getitem_129 silu_43
+Split                    splitncnn_24             1 2 silu_43 silu_43_splitncnn_0 silu_43_splitncnn_1
+Reduction                node_mean_14             2 1 silu_43_splitncnn_1 val_30_splitncnn_2 mean_14 0=3 4=1
+Convolution              node_conv2d_72           1 1 mean_14 conv2d_72 0=48 5=1
+Swish                    node_silu_44             1 1 conv2d_72 silu_44
+Convolution              node_conv2d_73           1 1 silu_44 sigmoid_14 0=1152 5=1 9=4
+BinaryOp                 node_mul_1148            2 1 sigmoid_14 silu_43_splitncnn_0 mul_1148 0=2
+Convolution              node_Conv_867            1 1 mul_1148 getitem_132 0=192 5=1
+BinaryOp                 node_add_1458            2 1 getitem_132 add_1354_splitncnn_0 add_1458
+Convolution              node_Conv_869            1 1 add_1458 getitem_135 0=1152 5=1
+Swish                    node_silu_45             1 1 getitem_135 silu_45
+ConvolutionDepthWise     node_Conv_871            1 1 silu_45 getitem_138 0=1152 4=1 5=1 7=1152
+Swish                    node_silu_46             1 1 getitem_138 silu_46
+Split                    splitncnn_25             1 2 silu_46 silu_46_splitncnn_0 silu_46_splitncnn_1
+Reduction                node_mean_15             2 1 silu_46_splitncnn_1 val_30_splitncnn_1 mean_15 0=3 4=1
+Convolution              node_conv2d_77           1 1 mean_15 conv2d_77 0=48 5=1
+Swish                    node_silu_47             1 1 conv2d_77 silu_47
+Convolution              node_conv2d_78           1 1 silu_47 sigmoid_15 0=1152 5=1 9=4
+BinaryOp                 node_mul_1228            2 1 sigmoid_15 silu_46_splitncnn_0 mul_1228 0=2
+Convolution              node_Conv_873            1 1 mul_1228 getitem_141 0=320 5=1
+Convolution              node_Conv_875            1 1 getitem_141 getitem_144 0=1280 5=1
+Swish                    node_silu_48             1 1 getitem_144 silu_48
+Reduction                node_mean_16             2 1 silu_48 val_30_splitncnn_0 mean_16 0=3 4=1
+Concat                   node_Concat_630          2 1 val_0 val_629 val_630
+Reshape                  node_view                2 1 mean_16 val_630 view
+InnerProduct             node_linear              1 1 view output 1=1

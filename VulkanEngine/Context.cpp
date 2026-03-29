@@ -1,4 +1,4 @@
-﻿#include "Context.h"
+#include "Context.h"
 #include <algorithm>
 
 namespace caaVk {
@@ -525,11 +525,21 @@ namespace caaVk {
 		}
 
 		uint32_t selectedDevice = 0;
+		// Prioritize Discrete GPU if available
+		for (uint32_t i = 0; i < gpuCount; ++i) {
+			VkPhysicalDeviceProperties props;
+			vkGetPhysicalDeviceProperties(physicalDevices[i], &props);
+			if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
+				selectedDevice = i;
+				break;
+			}
+		}
+
 		_physicalDevice = physicalDevices[selectedDevice];
 
 		vkGetPhysicalDeviceProperties(_physicalDevice, &deviceProperties_);
 
-		printLog("Selected {} ({})", deviceProperties_.deviceName,
+		printLog("Selected Device {}: {} ({})", selectedDevice, deviceProperties_.deviceName,
 			getPhysicalDeviceTypeString(deviceProperties_.deviceType));
 		printLog("  nonCoherentAtomSize: {}", deviceProperties_.limits.nonCoherentAtomSize);
 		printLog("  Max UBO size: {} KBytes", deviceProperties_.limits.maxUniformBufferRange / 1024);
@@ -595,7 +605,7 @@ namespace caaVk {
 			queueFamilyProperties_.data());
 
 		printLog("\nQueue Family Properties: {}", queueFamilyCount);
-		for (uint32_t i = 0; i < queueFamilyCount; ++i) {
+		for (uint32_t i = 0; i < queueFamilyCount; ++ i) {
 			const auto& props = queueFamilyProperties_[i];
 
 			string queueFlagsStr;
@@ -620,7 +630,9 @@ namespace caaVk {
 		}
 
 		uint32_t extCount = 0;
+		printLog("\nEnumerating device extension properties...");
 		vkEnumerateDeviceExtensionProperties(_physicalDevice, nullptr, &extCount, nullptr);
+		printLog("  Found {} device extensions", extCount);
 		if (extCount > 0) {
 			vector<VkExtensionProperties> extensions(extCount);
 			if (vkEnumerateDeviceExtensionProperties(_physicalDevice, nullptr, &extCount,
@@ -630,6 +642,7 @@ namespace caaVk {
 				}
 			}
 		}
+		printLog("Finished physical device selection.");
 
 	}
 
@@ -661,6 +674,21 @@ namespace caaVk {
 	auto Context::transferCommandPool() const -> VkCommandPool
 	{
 		return transferCommandPool_;
+	}
+
+	auto Context::computeQueue() const -> VkQueue
+	{
+		return computeQueue_;
+	}
+
+	auto Context::computeQueueFamilyIndex() const -> uint32_t
+	{
+		return queueFamilyIndices_.compute;
+	}
+
+	auto Context::graphicsQueueFamilyIndex() const -> uint32_t
+	{
+		return queueFamilyIndices_.graphics;
 	}
 
 	auto Context::getQueueFamilyIndex(VkQueueFlags queueFlags) const -> uint32_t

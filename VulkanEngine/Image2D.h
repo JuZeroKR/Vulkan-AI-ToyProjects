@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "ResourceBinding.h"
 // #include <ktx.h>
@@ -37,6 +37,8 @@ namespace caaVk {
         auto view() -> VkImageView;
         auto width() const -> uint32_t;
         auto height() const -> uint32_t;
+
+        void downloadToPixels(unsigned char* outData);
 
         void updateUsageFlags(VkImageUsageFlags usageFlags)
         {

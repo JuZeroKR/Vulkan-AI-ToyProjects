@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <vulkan/vulkan.h>
 
@@ -54,6 +54,10 @@ namespace caaVk {
 
 		auto createTransferCommandBuffer(VkCommandBufferLevel level, bool begin = false) -> CommandBuffer;
 		auto createComputeCommandBuffer(VkCommandBufferLevel level, bool begin = false) -> CommandBuffer;
+
+		auto computeQueue() const -> VkQueue;
+		auto computeQueueFamilyIndex() const -> uint32_t;
+		auto graphicsQueueFamilyIndex() const -> uint32_t;
 
 		auto pipelineCache() -> VkPipelineCache { return pipelineCache_; }
 
