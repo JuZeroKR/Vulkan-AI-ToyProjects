@@ -1,7 +1,3 @@
-#include "framework.h"
-#include "EfficientNetVulkanClassifier.h"
-
-#include "spirv_reflect.h"
 
 #include <vulkan/vulkan.h>
 #include <iostream>
@@ -19,7 +15,6 @@
 #include <shellapi.h>
 
 #include "DescriptorSet.h"
-
 #include "ShaderManager.h"
 #include "Pipeline.h"
 #include "InferenceEngine.h"
@@ -27,64 +22,22 @@
 using namespace caaVk;
 namespace fs = std::filesystem;
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+int main(int argc, char* argv[])
 {
-    switch (message)
-    {
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        return 0;
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-}
-
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
-{
-    // 0. Open debug console window
-    AllocConsole();
-    FILE* fp = nullptr;
-    freopen_s(&fp, "CONOUT$", "w", stdout);
-    freopen_s(&fp, "CONOUT$", "w", stderr);
-    std::cout << "[EfficientNetVulkanClassifier] Batch Test Console initialized." << std::endl;
-
-    // 1. Initialize Windows Window
-    const wchar_t CLASS_NAME[] = L"EfficientNetVulkanClassifierWindowClass";
-
-    WNDCLASSW wc = { };
-    wc.lpfnWndProc   = WndProc;
-    wc.hInstance     = hInstance;
-    wc.lpszClassName = CLASS_NAME;
-
-    RegisterClassW(&wc);
-
-    HWND hWnd = CreateWindowExW(
-        0,
-        CLASS_NAME,
-        L"EfficientNetVulkanClassifier Vulkan Window",
-        WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, CW_USEDEFAULT, 800, 600,
-        nullptr, nullptr, hInstance, nullptr
-    );
-
-    if (!hWnd) return 0;
-    ShowWindow(hWnd, nCmdShow);
+    std::cout << "[EfficientNetClassifier] CLI Mode initialized." << std::endl;
 
     try {
         Context ctx({}, false);
-        std::cout << "[EfficientNetVulkanClassifier] Vulkan initialized." << std::endl;
+        std::cout << "[EfficientNetClassifier] Vulkan initialized." << std::endl;
         
         std::string assetsPath = "assets/";
-        std::string testImagesPath = assetsPath + "test_images/";
+        std::string testImagesPath = fs::exists(assetsPath + "test_images/") ? (assetsPath + "test_images/") : ("../assets/test_images/");
         
         // [0. Initialize ShaderManager and Layouts]
         ShaderManager sm(ctx, assetsPath + "shaders/", { {"restoration", {"test.comp.spv"}} });
         ctx.descriptorPool().createLayouts(sm.layoutInfos());
         VkDescriptorSetLayout descriptorSetLayout = ctx.descriptorPool().layoutsForPipeline("restoration")[0];
-        //system("pause");
+
         // [1. Prepare AI Engine]
         InferenceEngine aiEngine(ctx);
         if (!aiEngine.loadModel("../AI/efficientnet_b0.param", "../AI/efficientnet_b0.bin")) {
@@ -93,8 +46,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         if (!aiEngine.loadLabels("../AI/imagenet_classes.txt")) {
             std::cout << "[Warning] Failed to load ImageNet labels." << std::endl;
         }
-
-        //system("pause");
 
         // [2. Pipeline]
         VkPipelineLayoutCreateInfo pipelineLayoutCI{ VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO };
@@ -124,8 +75,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         vkCreateSampler(ctx.device(), &sInfo, nullptr, &sampler);
 
         VkDescriptorSet dSet = ctx.descriptorPool().allocateDescriptorSet(descriptorSetLayout);
-
-        //system("pause");
 
         // [4. Batch Process Loop]
         std::cout << "\n>>> Starting BATCH TEST (Target: " << testImagesPath << ")\n" << std::endl;
